@@ -9,5 +9,38 @@ package com.thusarakap.healthsystemapi.model;
  * @author Thusaraka
  */
 public class Person {
+    private String name;
+    private String contactInformation;
+    private String address;
     
+    public Person(String name, String contactInformation, String address) {
+        this.name = name;
+        this.contactInformation = contactInformation;
+        this.address = address;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public String getContactInformation() {
+        return contactInformation;
+    }
+    
+    public void setContactInformation(String contactInformation) {
+        this.contactInformation = contactInformation;
+    }
+    
+    public String getAddress() {
+        return address;
+    }
+    
+    public void address(String address) {
+        this.address = address;
+    }
 }
+
