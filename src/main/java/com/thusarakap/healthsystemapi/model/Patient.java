@@ -33,5 +33,4 @@ public class Patient extends Person{
     public void setCurrentHealthStatus(String currentHealthStatus) {
         this.currentHealthStatus = currentHealthStatus;
     }
-    
 }
