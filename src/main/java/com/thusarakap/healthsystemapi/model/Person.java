@@ -9,14 +9,21 @@ package com.thusarakap.healthsystemapi.model;
  * @author Thusaraka
  */
 public class Person {
+    private static int nextId = 1;
+    private int id;
     private String name;
     private String contactInformation;
     private String address;
     
     public Person(String name, String contactInformation, String address) {
+        this.id = nextId++;
         this.name = name;
         this.contactInformation = contactInformation;
         this.address = address;
+    }
+    
+    public int getId() {
+        return id;
     }
     
     public String getName() {
