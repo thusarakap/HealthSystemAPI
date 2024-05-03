@@ -8,15 +8,19 @@ package com.thusarakap.healthsystemapi.model;
  *
  * @author Thusaraka
  */
+
 public class Person {
-    private static int nextId = 1;
     private int id;
     private String name;
     private String contactInformation;
     private String address;
     
-    public Person(String name, String contactInformation, String address) {
-        this.id = nextId++;
+    public Person() {
+        // Default constructor needed for Jackson deserialization
+    }
+    
+    public Person(int id, String name, String contactInformation, String address) {
+        this.id = id;
         this.name = name;
         this.contactInformation = contactInformation;
         this.address = address;
@@ -26,6 +30,10 @@ public class Person {
         return id;
     }
     
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -46,7 +54,7 @@ public class Person {
         return address;
     }
     
-    public void address(String address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 }
