@@ -11,6 +11,7 @@ import java.time.LocalTime;
  *
  * @author Thusaraka
  */
+
 public class Appointment {
     private int id;
     private LocalDate date;
