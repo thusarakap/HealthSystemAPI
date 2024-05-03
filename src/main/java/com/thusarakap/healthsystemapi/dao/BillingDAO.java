@@ -4,63 +4,84 @@
  */
 package com.thusarakap.healthsystemapi.dao;
 
+import com.thusarakap.healthsystemapi.exceptions.InvalidRequestException;
+import com.thusarakap.healthsystemapi.exceptions.PersonNotFoundException;
+import com.thusarakap.healthsystemapi.model.Billing;
+import com.thusarakap.healthsystemapi.model.Doctor;
+import com.thusarakap.healthsystemapi.model.Patient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Thusaraka
  */
 
-import com.thusarakap.healthsystemapi.model.Billing;
-import java.util.ArrayList;
-import java.util.List;
-
 public class BillingDAO {
-    private static List<Billing> billingList = new ArrayList<>();
+    private static final Logger LOGGER = LoggerFactory.getLogger(BillingDAO.class);
 
-    // Method to add a new billing record
-    public void addBilling(Billing billing) {
-        billingList.add(billing);
+    private static final List<Billing> billingList = new ArrayList<>();
+
+    static {
+        // Sample patients (You need to replace these with actual patient and doctor objects)
+        Patient patient1 = new Patient(1, "John Doe", "john@example.com", "123 Main St", "Chronic illness", "Stable");
+        Patient patient2 = new Patient(2, "Jane Smith", "jane@example.com", "456 Elm St", "Allergic rhinitis", "Improving");
+        Doctor doctor1 = new Doctor(2, "Dr. John Doe", "john@example.com", "123 Main St", "General Medicine", "123-456-7890");
+        Doctor doctor2 = new Doctor(2, "Dr. Jane Smith", "jane@example.com", "456 Elm St", "Pediatrics", "987-654-3210");
+
+        // Adding sample billings
+        billingList.add(new Billing(1, 150.0, false, patient1, doctor1));
+        billingList.add(new Billing(2, 200.0, true, patient2, doctor2));
+        billingList.add(new Billing(3, 100.0, true, patient1, doctor1));
     }
-
-    // Method to retrieve all billing records
     public List<Billing> getAllBillings() {
+        LOGGER.info("Getting all billings.");
         return billingList;
     }
 
-    // Method to retrieve billing records for a specific patient
-    public List<Billing> getBillingsByPatient(int patientId) {
-        List<Billing> patientBillings = new ArrayList<>();
+    public Billing getBillingById(int id) throws PersonNotFoundException {
+        LOGGER.info("Getting billing by ID: {}", id);
         for (Billing billing : billingList) {
-            if (billing.getPatient().getId() == patientId) {
-                patientBillings.add(billing);
+            if (billing.getInvoiceId() == id) {
+                return billing;
             }
         }
-        return patientBillings;
+        throw new PersonNotFoundException("Billing with ID " + id + " not found.");
     }
 
-    // Method to retrieve billing records for a specific doctor
-    public List<Billing> getBillingsByDoctor(int doctorId) {
-        List<Billing> doctorBillings = new ArrayList<>();
-        for (Billing billing : billingList) {
-            if (billing.getDoctor().getId() == doctorId) {
-                doctorBillings.add(billing);
+    public void addBilling(Billing billing) throws InvalidRequestException {
+        LOGGER.info("Adding new billing: {}", billing);
+        // Check if the billing already exists
+        if (billingList.contains(billing)) {
+            throw new InvalidRequestException("Billing already exists.");
+        }
+        // Add the billing to the billingList
+        billingList.add(billing);
+    }
+
+    public void updateBilling(int id, Billing updatedBilling) throws PersonNotFoundException {
+        LOGGER.info("Updating billing with ID: {}", id);
+        boolean found = false;
+        for (int i = 0; i < billingList.size(); i++) {
+            Billing billing = billingList.get(i);
+            if (billing.getInvoiceId() == id) {
+                billingList.set(i, updatedBilling);
+                found = true;
+                break;
             }
         }
-        return doctorBillings;
-    }
-
-    // Method to update an existing billing record
-    public void updateBilling(int invoiceNumber, double amount, boolean paymentStatus) {
-        for (Billing billing : billingList) {
-            if (billing.getInvoiceNumber() == invoiceNumber) {
-                billing.setAmount(amount);
-                billing.setPaymentStatus(paymentStatus);
-                return;
-            }
+        if (!found) {
+            throw new PersonNotFoundException("Billing with ID " + id + " not found.");
         }
     }
 
-    // Method to delete a billing record by invoice number
-    public void deleteBilling(int invoiceNumber) {
-        billingList.removeIf(billing -> billing.getInvoiceNumber() == invoiceNumber);
+    public void deleteBilling(int id) throws PersonNotFoundException {
+        LOGGER.info("Deleting billing with ID: {}", id);
+        boolean removed = billingList.removeIf(billing -> billing.getInvoiceId() == id);
+        if (!removed) {
+            throw new PersonNotFoundException("Billing with ID " + id + " not found.");
+        }
     }
 }
