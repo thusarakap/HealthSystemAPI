@@ -12,16 +12,26 @@ import java.util.List;
  * @author Thusaraka
  */
 public class MedicalRecord {
+    private int medicalRecordId;
     private Patient patient;
     private List<String> diagnoses;
     private List<String> treatments;
     private List<String> additionalNotes;
 
-    public MedicalRecord(Patient patient) {
+    public MedicalRecord(int medicalRecordId, Patient patient) {
+        this.medicalRecordId = medicalRecordId;
         this.patient = patient;
         this.diagnoses = new ArrayList<>();
         this.treatments = new ArrayList<>();
         this.additionalNotes = new ArrayList<>();
+    }
+
+    public int getMedicalRecordId() {
+        return medicalRecordId;
+    }
+
+    public void setMedicalRecordId(int medicalRecordId) {
+        this.medicalRecordId = medicalRecordId;
     }
 
     public Patient getPatient() {
