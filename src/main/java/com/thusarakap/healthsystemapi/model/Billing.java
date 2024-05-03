@@ -9,26 +9,26 @@ package com.thusarakap.healthsystemapi.model;
  * @author Thusaraka
  */
 public class Billing {
-    private int invoiceNumber;
+    private int invoiceId;
     private double amount;
     private boolean paymentStatus;
     private Patient patient;
     private Doctor doctor;
 
-    public Billing(int invoiceNumber, double amount, boolean paymentStatus, Patient patient, Doctor doctor) {
-        this.invoiceNumber = invoiceNumber;
+    public Billing(int invoiceId, double amount, boolean paymentStatus, Patient patient, Doctor doctor) {
+        this.invoiceId = invoiceId;
         this.amount = amount;
         this.paymentStatus = paymentStatus;
         this.patient = patient;
         this.doctor = doctor;
     }
 
-    public int getInvoiceNumber() {
-        return invoiceNumber;
+    public int getInvoiceId() {
+        return invoiceId;
     }
 
-    public void setInvoiceNumber(int invoiceNumber) {
-        this.invoiceNumber = invoiceNumber;
+    public void setInvoiceId(int invoiceId) {
+        this.invoiceId = invoiceId;
     }
 
     public double getAmount() {
