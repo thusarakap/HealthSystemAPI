@@ -8,8 +8,9 @@ package com.thusarakap.healthsystemapi.model;
  *
  * @author Thusaraka
  */
+
 public class Prescription {
-    private int id;
+    private int prescriptionId;
     private String medication;
     private String dosage;
     private String instructions;
@@ -17,8 +18,8 @@ public class Prescription {
     private Patient patient;
     private Doctor doctor;
 
-    public Prescription(int id, String medication, String dosage, String instructions, String duration, Patient patient, Doctor doctor) {
-        this.id = id;
+    public Prescription(int prescriptionId, String medication, String dosage, String instructions, String duration, Patient patient, Doctor doctor) {
+        this.prescriptionId = prescriptionId;
         this.medication = medication;
         this.dosage = dosage;
         this.instructions = instructions;
@@ -27,12 +28,12 @@ public class Prescription {
         this.doctor = doctor;
     }
 
-    public int getId() {
-        return id;
+    public int getPrescriptionId() {
+        return prescriptionId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPrescriptionId(int id) {
+        this.prescriptionId = prescriptionId;
     }
 
     public String getMedication() {
