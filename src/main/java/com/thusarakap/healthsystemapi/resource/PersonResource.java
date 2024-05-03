@@ -1,82 +1,93 @@
 package com.thusarakap.healthsystemapi.resource;
 
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
 import com.thusarakap.healthsystemapi.dao.PersonDAO;
+import com.thusarakap.healthsystemapi.exceptions.InvalidRequestException;
+import com.thusarakap.healthsystemapi.exceptions.PersonNotFoundException;
 import com.thusarakap.healthsystemapi.model.Person;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ *
+ * @author Thusaraka
+ */
 
 @Path("/persons")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class PersonResource {
-
     private static final Logger LOGGER = LoggerFactory.getLogger(PersonResource.class);
-    private PersonDAO personDAO = new PersonDAO();
+
+    private final PersonDAO personDAO;
+
+    public PersonResource() {
+        this.personDAO = new PersonDAO();
+    }
 
     @GET
-    public Response getAllPersons() {
-        try {
-            List<Person> persons = personDAO.getAllPersons();
-            return Response.ok(persons).build();
-        } catch (Exception e) {
-            LOGGER.error("Error retrieving persons: {}", e.getMessage());
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error retrieving persons").build();
-        }
+    public List<Person> getAllPersons() {
+        LOGGER.info("Getting all persons.");
+        return personDAO.getAllPersons();
     }
 
     @GET
     @Path("/{id}")
     public Response getPersonById(@PathParam("id") int id) {
+        LOGGER.info("Getting person by ID: {}", id);
         try {
             Person person = personDAO.getPersonById(id);
-            if (person != null) {
-                return Response.ok(person).build();
-            } else {
-                return Response.status(Response.Status.NOT_FOUND).entity("Person not found").build();
-            }
-        } catch (Exception e) {
-            LOGGER.error("Error retrieving person: {}", e.getMessage());
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error retrieving person").build();
+            return Response.ok(person).build();
+        } catch (PersonNotFoundException e) {
+            LOGGER.warn("Person with ID {} not found.", id);
+            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }
     }
 
     @POST
     public Response addPerson(Person person) {
+        LOGGER.info("Adding new person: {}", person);
         try {
             personDAO.addPerson(person);
             return Response.status(Response.Status.CREATED).entity(person).build();
-        } catch (Exception e) {
-            LOGGER.error("Error adding person: {}", e.getMessage());
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error adding person").build();
+        } catch (InvalidRequestException e) {
+            LOGGER.warn("Invalid request while adding person: {}", e.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
     }
 
     @PUT
     @Path("/{id}")
     public Response updatePerson(@PathParam("id") int id, Person updatedPerson) {
+        LOGGER.info("Updating person with ID: {}", id);
         try {
             personDAO.updatePerson(id, updatedPerson);
-            return Response.ok().build();
-        } catch (Exception e) {
-            LOGGER.error("Error updating person: {}", e.getMessage());
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error updating person").build();
+            return Response.status(Response.Status.OK).entity(updatedPerson).build();
+        } catch (PersonNotFoundException e) {
+            LOGGER.warn("Person with ID {} not found.", id);
+            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }
     }
 
     @DELETE
     @Path("/{id}")
     public Response deletePerson(@PathParam("id") int id) {
+        LOGGER.info("Deleting person with ID: {}", id);
         try {
             personDAO.deletePerson(id);
-            return Response.ok().build();
-        } catch (Exception e) {
-            LOGGER.error("Error deleting person: {}", e.getMessage());
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Error deleting person").build();
+            return Response.status(Response.Status.OK).build();
+        } catch (PersonNotFoundException e) {
+            LOGGER.warn("Person with ID {} not found.", id);
+            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }
     }
 }
