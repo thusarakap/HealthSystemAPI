@@ -8,12 +8,13 @@ package com.thusarakap.healthsystemapi.model;
  *
  * @author Thusaraka
  */
+
 public class Patient extends Person{
     private String medicalHistory;
     private String currentHealthStatus;
     
-    public Patient(String name, String contactInformation, String address, String medicalHistory, String currentHealthStatus) {
-        super(name, contactInformation, address);
+    public Patient(int id, String name, String contactInformation, String address, String medicalHistory, String currentHealthStatus) {
+        super(id, name, contactInformation, address);
         this.medicalHistory = medicalHistory;
         this.currentHealthStatus = currentHealthStatus;
     }
