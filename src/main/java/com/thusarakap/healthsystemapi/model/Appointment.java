@@ -19,6 +19,10 @@ public class Appointment {
     private Patient patient;
     private Doctor doctor;
     
+    public Appointment() {
+        // Default constructor needed for Jackson deserialization
+    }
+    
     public Appointment(int id, LocalDate date, LocalTime time, Patient patient, Doctor doctor) {
         this.id = id;
         this.date = date; 
