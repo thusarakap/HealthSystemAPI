@@ -13,6 +13,10 @@ public class Patient extends Person{
     private String medicalHistory;
     private String currentHealthStatus;
     
+    public Patient() {
+        // Default constructor needed for Jackson deserialization
+    }
+    
     public Patient(int id, String name, String contactInformation, String address, String medicalHistory, String currentHealthStatus) {
         super(id, name, contactInformation, address);
         this.medicalHistory = medicalHistory;
