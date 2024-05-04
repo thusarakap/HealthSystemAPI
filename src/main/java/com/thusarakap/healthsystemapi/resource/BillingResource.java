@@ -5,8 +5,8 @@
 package com.thusarakap.healthsystemapi.resource;
 
 import com.thusarakap.healthsystemapi.dao.BillingDAO;
-import com.thusarakap.healthsystemapi.exceptions.BillNotFoundException;
-import com.thusarakap.healthsystemapi.exceptions.InvalidRequestException;
+import com.thusarakap.healthsystemapi.exception.BillNotFoundException;
+import com.thusarakap.healthsystemapi.exception.InvalidRequestException;
 import com.thusarakap.healthsystemapi.model.Billing;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
