@@ -5,8 +5,8 @@
 package com.thusarakap.healthsystemapi.resource;
 
 import com.thusarakap.healthsystemapi.dao.DoctorDAO;
-import com.thusarakap.healthsystemapi.exceptions.InvalidRequestException;
-import com.thusarakap.healthsystemapi.exceptions.PersonNotFoundException;
+import com.thusarakap.healthsystemapi.exception.InvalidRequestException;
+import com.thusarakap.healthsystemapi.exception.PersonNotFoundException;
 import com.thusarakap.healthsystemapi.model.Doctor;
 
 import javax.ws.rs.*;
