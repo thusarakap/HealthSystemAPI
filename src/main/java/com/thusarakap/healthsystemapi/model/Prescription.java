@@ -9,7 +9,7 @@ package com.thusarakap.healthsystemapi.model;
  * @author Thusaraka
  */
 
-/* Model class representing a prescription. */
+// Model class representing a prescription. 
 public class Prescription {
     private int prescriptionId;
     private String medication;
@@ -19,11 +19,11 @@ public class Prescription {
     private Patient patient;
     private Doctor doctor;
 
-    /* Default constructor */
+    // Default constructor 
     public Prescription() {
     }
     
-    /* Constructor with parameters */
+    // Constructor with parameters 
     public Prescription(int prescriptionId, String medication, String dosage, String instructions, String duration, Patient patient, Doctor doctor) {
         this.prescriptionId = prescriptionId;
         this.medication = medication;
@@ -34,72 +34,72 @@ public class Prescription {
         this.doctor = doctor;
     }
 
-    /* Getter for prescription ID */
+    // Getter for prescription ID 
     public int getPrescriptionId() {
         return prescriptionId;
     }
 
-    /* Setter for prescription ID */
+    // Setter for prescription ID 
     public void setPrescriptionId(int prescriptionId) {
         this.prescriptionId = prescriptionId;
     }
 
-    /* Getter for medication */
+    // Getter for medication 
     public String getMedication() {
         return medication;
     }
 
-    /* Setter for medication */
+    // Setter for medication 
     public void setMedication(String medication) {
         this.medication = medication;
     }
 
-    /* Getter for dosage */
+    // Getter for dosage 
     public String getDosage() {
         return dosage;
     }
 
-    /* Setter for dosage */
+    // Setter for dosage 
     public void setDosage(String dosage) {
         this.dosage = dosage;
     }
 
-    /* Getter for instructions */
+    // Getter for instructions 
     public String getInstructions() {
         return instructions;
     }
 
-    /* Setter for instructions */
+    // Setter for instructions 
     public void setInstructions(String instructions) {
         this.instructions = instructions;
     }
 
-    /* Getter for duration */
+    // Getter for duration 
     public String getDuration() {
         return duration;
     }
 
-    /* Setter for duration */
+    // Setter for duration 
     public void setDuration(String duration) {
         this.duration = duration;
     }
 
-    /* Getter for patient */
+    // Getter for patient 
     public Patient getPatient() {
         return patient;
     }
 
-    /* Setter for patient */
+    // Setter for patient 
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
 
-    /* Getter for doctor */
+    // Getter for doctor 
     public Doctor getDoctor() {
         return doctor;
     }
 
-    /* Setter for doctor */
+    // Setter for doctor 
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
     }
