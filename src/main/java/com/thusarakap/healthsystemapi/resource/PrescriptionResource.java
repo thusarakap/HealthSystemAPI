@@ -6,7 +6,7 @@ package com.thusarakap.healthsystemapi.resource;
 
 import com.thusarakap.healthsystemapi.dao.PrescriptionDAO;
 import com.thusarakap.healthsystemapi.exceptions.InvalidRequestException;
-import com.thusarakap.healthsystemapi.exceptions.PersonNotFoundException;
+import com.thusarakap.healthsystemapi.exceptions.PrescriptionNotFoundException;
 import com.thusarakap.healthsystemapi.model.Prescription;
 
 import org.slf4j.Logger;
@@ -45,7 +45,7 @@ public class PrescriptionResource {
         try {
             Prescription prescription = prescriptionDAO.getPrescriptionById(id);
             return Response.ok(prescription).build();
-        } catch (PersonNotFoundException e) {
+        } catch (PrescriptionNotFoundException e) {
             LOGGER.warn("Prescription with ID {} not found.", id);
             return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }
@@ -70,7 +70,7 @@ public class PrescriptionResource {
         try {
             prescriptionDAO.updatePrescription(id, updatedPrescription);
             return Response.status(Response.Status.OK).entity(updatedPrescription).build();
-        } catch (PersonNotFoundException e) {
+        } catch (PrescriptionNotFoundException e) {
             LOGGER.warn("Prescription with ID {} not found.", id);
             return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }
@@ -83,7 +83,7 @@ public class PrescriptionResource {
         try {
             prescriptionDAO.deletePrescription(id);
             return Response.status(Response.Status.OK).build();
-        } catch (PersonNotFoundException e) {
+        } catch (PrescriptionNotFoundException e) {
             LOGGER.warn("Prescription with ID {} not found.", id);
             return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }
