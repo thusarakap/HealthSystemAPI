@@ -12,7 +12,7 @@ import java.util.List;
  * @author Thusaraka
  */
 
-/* Model class representing a medical record. */
+// Model class representing a medical record.
 public class MedicalRecord {
     private int medicalRecordId;
     private Patient patient;
@@ -20,11 +20,11 @@ public class MedicalRecord {
     private List<String> treatments;
     private List<String> additionalNotes;
 
-    /* Default constructor */
+    // Default constructor
     public MedicalRecord() {
     }
     
-    /* Constructor with parameters */
+    // Constructor with parameters
     public MedicalRecord(int medicalRecordId, Patient patient) {
         this.medicalRecordId = medicalRecordId;
         this.patient = patient;
@@ -33,52 +33,52 @@ public class MedicalRecord {
         this.additionalNotes = new ArrayList<>();
     }
 
-    /* Getter for medical record ID */
+    // Getter for medical record ID
     public int getMedicalRecordId() {
         return medicalRecordId;
     }
 
-    /* Setter for medical record ID */
+    // Setter for medical record ID
     public void setMedicalRecordId(int medicalRecordId) {
         this.medicalRecordId = medicalRecordId;
     }
 
-    /* Getter for patient */
+    // Getter for patient
     public Patient getPatient() {
         return patient;
     }
 
-    /* Setter for patient */
+    // Setter for patient
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
     
-    /* Method to add diagnosis */
+    // Method to add diagnosis
     public void addDiagnosis(String diagnosis) {
         diagnoses.add(diagnosis);
     }
     
-    /* Getter for diagnoses */
+    // Getter for diagnoses
     public List<String> getDiagnoses() {
         return diagnoses;
     }
     
-    /* Method to add treatment */
+    // Method to add treatment
     public void addTreatment(String treatment) {
         treatments.add(treatment);
     }
     
-    /* Getter for treatments */
+    // Getter for treatments
     public List<String> getTreatments() {
         return treatments;
     }
   
-    /* Method to add additional notes */
+    // Method to add additional notes
     public void addAdditionalNotes(String note) {
         additionalNotes.add(note);
     }
     
-    /* Getter for additional notes */
+    // Getter for additional notes
     public List<String> getAdditionalNotes() {
         return additionalNotes;
     }
