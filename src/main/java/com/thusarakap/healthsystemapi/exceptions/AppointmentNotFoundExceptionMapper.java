@@ -25,7 +25,7 @@ public class AppointmentNotFoundExceptionMapper implements ExceptionMapper<Appoi
     public Response toResponse(AppointmentNotFoundException exception) {
         LOGGER.error("AppointmentNotFoundException caught: {}", exception.getMessage(), exception);
 
-        return Response.status(Response.Status.BAD_REQUEST)
+        return Response.status(Response.Status.NOT_FOUND)
                 .entity(exception.getMessage())
                 .type(MediaType.TEXT_PLAIN)
                 .build();
