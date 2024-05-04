@@ -15,6 +15,10 @@ public class Billing {
     private Patient patient;
     private Doctor doctor;
 
+    public Billing() {
+        // Default constructor needed for Jackson deserialization
+    }
+    
     public Billing(int invoiceId, double amount, boolean paymentStatus, Patient patient, Doctor doctor) {
         this.invoiceId = invoiceId;
         this.amount = amount;
