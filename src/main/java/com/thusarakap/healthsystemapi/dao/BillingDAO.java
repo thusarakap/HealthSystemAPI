@@ -14,20 +14,20 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
+/*
  *
  * @author Thusaraka
  */
 
- /* Data Access Object (DAO) class for handling operations related to billing. */
+ // Data Access Object (DAO) class for handling operations related to billing. 
 public class BillingDAO {
-    /* Initializing SLF4J logger */
+    // Initializing SLF4J logger 
     private static final Logger LOGGER = LoggerFactory.getLogger(BillingDAO.class);
 
-    /* Initializing list to store billings */
+    // Initializing list to store billings 
     private static final List<Billing> billingList = new ArrayList<>();
 
-    /* Static initializer to add sample data */
+    // Static initializer to add sample data 
     static {
         // Sample patients (You need to replace these with actual patient and doctor objects)
         Patient patient1 = new Patient(1, "John Doe", "john@example.com", "123 Main St", "Chronic illness", "Stable");
@@ -41,26 +41,26 @@ public class BillingDAO {
         billingList.add(new Billing(3, 100.0, true, patient1, doctor1));
     }
     
-    /* Method to retrieve all billings */
+    // Method to retrieve all billings 
     public List<Billing> getAllBillings() {
         LOGGER.info("Getting all billings.");
         return billingList;
     }
 
-    /* Method to retrieve a billing by ID */
+    // Method to retrieve a billing by ID 
     public Billing getBillingById(int id) throws BillNotFoundException {
         LOGGER.info("Getting billing by ID: {}", id);
-        /* Iterate through the list to find the billing with specified ID */
+        // Iterate through the list to find the billing with specified ID 
         for (Billing billing : billingList) {
             if (billing.getInvoiceId() == id) {
                 return billing;
             }
         }
-        /* Throw exception if billing with specified ID is not found */
+        // Throw exception if billing with specified ID is not found 
         throw new BillNotFoundException("Billing with ID " + id + " not found.");
     }
 
-    /* Method to add a new billing */
+    // Method to add a new billing 
     public void addBilling(Billing billing) throws InvalidRequestException {
         LOGGER.info("Adding new billing: {}", billing);
         // Check if the billing already exists
@@ -91,11 +91,11 @@ public class BillingDAO {
         return maxInvoiceId + 1;
     }
 
-    /* Method to update a billing by ID */
+    // Method to update a billing by ID 
     public void updateBilling(int id, Billing updatedBilling) throws BillNotFoundException {
         LOGGER.info("Updating billing with ID: {}", id);
         boolean found = false;
-        /* Iterate through the list to find the billing with specified ID */
+        // Iterate through the list to find the billing with specified ID 
         for (int i = 0; i < billingList.size(); i++) {
             Billing billing = billingList.get(i);
             if (billing.getInvoiceId() == id) {
@@ -104,18 +104,18 @@ public class BillingDAO {
                 break;
             }
         }
-        /* Throw exception if billing with specified ID is not found */
+        // Throw exception if billing with specified ID is not found 
         if (!found) {
             throw new BillNotFoundException("Billing with ID " + id + " not found.");
         }
     }
 
-    /* Method to delete a billing by ID */
+    // Method to delete a billing by ID 
     public void deleteBilling(int id) throws BillNotFoundException {
         LOGGER.info("Deleting billing with ID: {}", id);
-        /* Use lambda expression to remove billing from list */
+        // Use lambda expression to remove billing from list 
         boolean removed = billingList.removeIf(billing -> billing.getInvoiceId() == id);
-        /* Throw exception if billing with specified ID is not found */
+        // Throw exception if billing with specified ID is not found 
         if (!removed) {
             throw new BillNotFoundException("Billing with ID " + id + " not found.");
         }
