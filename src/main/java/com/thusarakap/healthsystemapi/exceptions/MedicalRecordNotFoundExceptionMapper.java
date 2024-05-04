@@ -25,7 +25,7 @@ public class MedicalRecordNotFoundExceptionMapper implements ExceptionMapper<Med
     public Response toResponse(MedicalRecordNotFoundException exception) {
         LOGGER.error("MedicalRecordNotFoundException caught: {}", exception.getMessage(), exception);
 
-        return Response.status(Response.Status.BAD_REQUEST)
+        return Response.status(Response.Status.NOT_FOUND)
                 .entity(exception.getMessage())
                 .type(MediaType.TEXT_PLAIN)
                 .build();
