@@ -4,8 +4,8 @@
  */
 package com.thusarakap.healthsystemapi.dao;
 
-import com.thusarakap.healthsystemapi.exceptions.InvalidRequestException;
-import com.thusarakap.healthsystemapi.exceptions.AppointmentNotFoundException;
+import com.thusarakap.healthsystemapi.exception.InvalidRequestException;
+import com.thusarakap.healthsystemapi.exception.AppointmentNotFoundException;
 import com.thusarakap.healthsystemapi.model.Appointment;
 import com.thusarakap.healthsystemapi.model.Doctor;
 import com.thusarakap.healthsystemapi.model.Patient;
@@ -22,11 +22,15 @@ import java.time.LocalTime;
  * @author Thusaraka
  */
 
+// Data Access Object (DAO) class for handling operations related to appointments. 
 public class AppointmentDAO {
+    // Initializing SLF4J logger 
     private static final Logger LOGGER = LoggerFactory.getLogger(AppointmentDAO.class);
 
+    // Initializing list to store appointments 
     private static final List<Appointment> appointmentList = new ArrayList<>();
 
+    // Static initializer to add sample data 
     static {
         Patient patient1 = new Patient(1, "John Doe", "john@example.com", "123 Main St", "Chronic illness", "Stable");
         Patient patient2 = new Patient(2, "Jane Smith", "jane@example.com", "456 Elm St", "Allergic rhinitis", "Improving");
@@ -41,21 +45,26 @@ public class AppointmentDAO {
         appointmentList.add(new Appointment(3, LocalDate.of(2024, 5, 15), LocalTime.of(9, 0), patient3, doctor3));
     }
 
+    // Method to retrieve all appointments 
     public List<Appointment> getAllAppointments() {
         LOGGER.info("Getting all appointments.");
         return appointmentList;
     }
 
+    // Method to retrieve an appointment by ID 
     public Appointment getAppointmentById(int id) throws AppointmentNotFoundException {
         LOGGER.info("Getting appointment by ID: {}", id);
+        // Iterate through the list to find the appointment with specified ID 
         for (Appointment appointment : appointmentList) {
             if (appointment.getId() == id) {
                 return appointment;
             }
         }
+        // Throw exception if appointment with specified ID is not found 
         throw new AppointmentNotFoundException("Appointment with ID " + id + " not found.");
     }
     
+    // Method to retrieve appointments by doctor ID 
     public List<Appointment> getAppointmentsByDoctorId(int doctorId) {
         List<Appointment> doctorAppointments = new ArrayList<>();
         for (Appointment appointment : appointmentList) {
@@ -66,6 +75,7 @@ public class AppointmentDAO {
         return doctorAppointments;
     }
     
+    // Method to retrieve appointments by patient ID 
     public List<Appointment> getAppointmentsByPatientId(int patientId) {
         List<Appointment> patientAppointments = new ArrayList<>();
         for (Appointment appointment : appointmentList) {
@@ -76,6 +86,7 @@ public class AppointmentDAO {
         return patientAppointments;
     }
 
+    // Method to add a new appointment 
     public void addAppointment(Appointment appointment) throws InvalidRequestException {
         LOGGER.info("Adding new appointment: {}", appointment);
         // Check if the appointment already exists
@@ -87,31 +98,8 @@ public class AppointmentDAO {
         // Add the appointment to the appointmentList
         appointmentList.add(appointment);
     }
-
-    public void updateAppointment(int id, Appointment updatedAppointment) throws AppointmentNotFoundException {
-        LOGGER.info("Updating appointment with ID: {}", id);
-        boolean found = false;
-        for (int i = 0; i < appointmentList.size(); i++) {
-            Appointment appointment = appointmentList.get(i);
-            if (appointment.getId() == id) {
-                appointmentList.set(i, updatedAppointment);
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            throw new AppointmentNotFoundException("Appointment with ID " + id + " not found.");
-        }
-    }
-
-    public void deleteAppointment(int id) throws AppointmentNotFoundException {
-        LOGGER.info("Deleting appointment with ID: {}", id);
-        boolean removed = appointmentList.removeIf(appointment -> appointment.getId() == id);
-        if (!removed) {
-            throw new AppointmentNotFoundException("Appointment with ID " + id + " not found.");
-        }
-    }
     
+    // Method to get the next available appointment ID 
     private int getNextAppointmentId() {
         // Initialize maxAppointmentId with a value lower than any possible appointmentId
         int maxAppointmentId = Integer.MIN_VALUE;
@@ -127,4 +115,35 @@ public class AppointmentDAO {
         // Increment the maximum appointmentId to get the next available appointmentId
         return maxAppointmentId + 1;
     }
+
+    // Method to update an appointment by ID 
+    public void updateAppointment(int id, Appointment updatedAppointment) throws AppointmentNotFoundException {
+        LOGGER.info("Updating appointment with ID: {}", id);
+        boolean found = false;
+        /* Iterate through the list to find the appointment with specified ID */
+        for (int i = 0; i < appointmentList.size(); i++) {
+            Appointment appointment = appointmentList.get(i);
+            if (appointment.getId() == id) {
+                appointmentList.set(i, updatedAppointment);
+                found = true;
+                break;
+            }
+        }
+        // Throw exception if appointment with specified ID is not found 
+        if (!found) {
+            throw new AppointmentNotFoundException("Appointment with ID " + id + " not found.");
+        }
+    }
+
+    // Method to delete an appointment by ID 
+    public void deleteAppointment(int id) throws AppointmentNotFoundException {
+        LOGGER.info("Deleting appointment with ID: {}", id);
+        // Use lambda expression to remove appointment from list 
+        boolean removed = appointmentList.removeIf(appointment -> appointment.getId() == id);
+        // Throw exception if appointment with specified ID is not found 
+        if (!removed) {
+            throw new AppointmentNotFoundException("Appointment with ID " + id + " not found.");
+        }
+    }
+    
 }
