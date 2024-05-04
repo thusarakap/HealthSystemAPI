@@ -5,8 +5,8 @@
 package com.thusarakap.healthsystemapi.resource;
 
 import com.thusarakap.healthsystemapi.dao.AppointmentDAO;
-import com.thusarakap.healthsystemapi.exceptions.InvalidRequestException;
-import com.thusarakap.healthsystemapi.exceptions.AppointmentNotFoundException;
+import com.thusarakap.healthsystemapi.exception.InvalidRequestException;
+import com.thusarakap.healthsystemapi.exception.AppointmentNotFoundException;
 import com.thusarakap.healthsystemapi.model.Appointment;
 
 import javax.ws.rs.*;
