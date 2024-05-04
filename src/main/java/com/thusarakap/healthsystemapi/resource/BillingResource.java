@@ -5,8 +5,8 @@
 package com.thusarakap.healthsystemapi.resource;
 
 import com.thusarakap.healthsystemapi.dao.BillingDAO;
+import com.thusarakap.healthsystemapi.exceptions.BillNotFoundException;
 import com.thusarakap.healthsystemapi.exceptions.InvalidRequestException;
-import com.thusarakap.healthsystemapi.exceptions.PersonNotFoundException;
 import com.thusarakap.healthsystemapi.model.Billing;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.List;
+
 /**
  *
  * @author Thusaraka
@@ -44,7 +45,7 @@ public class BillingResource {
         try {
             Billing billing = billingDAO.getBillingById(id);
             return Response.ok(billing).build();
-        } catch (PersonNotFoundException e) {
+        } catch (BillNotFoundException e) {
             LOGGER.warn("Billing with ID {} not found.", id);
             return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }
@@ -69,7 +70,7 @@ public class BillingResource {
         try {
             billingDAO.updateBilling(id, updatedBilling);
             return Response.status(Response.Status.OK).entity(updatedBilling).build();
-        } catch (PersonNotFoundException e) {
+        } catch (BillNotFoundException e) {
             LOGGER.warn("Billing with ID {} not found.", id);
             return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }
@@ -82,7 +83,7 @@ public class BillingResource {
         try {
             billingDAO.deleteBilling(id);
             return Response.status(Response.Status.OK).build();
-        } catch (PersonNotFoundException e) {
+        } catch (BillNotFoundException e) {
             LOGGER.warn("Billing with ID {} not found.", id);
             return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }
