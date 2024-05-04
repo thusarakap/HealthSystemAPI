@@ -10,8 +10,8 @@ package com.thusarakap.healthsystemapi.resource;
  */
 
 import com.thusarakap.healthsystemapi.dao.MedicalRecordDAO;
-import com.thusarakap.healthsystemapi.exceptions.InvalidRequestException;
-import com.thusarakap.healthsystemapi.exceptions.MedicalRecordNotFoundException;
+import com.thusarakap.healthsystemapi.exception.InvalidRequestException;
+import com.thusarakap.healthsystemapi.exception.MedicalRecordNotFoundException;
 import com.thusarakap.healthsystemapi.model.MedicalRecord;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
