@@ -9,34 +9,39 @@ package com.thusarakap.healthsystemapi.model;
  * @author Thusaraka
  */
 
-public class Doctor extends Person{
+/* Model class representing a doctor, extending the Person class. */
+public class Doctor extends Person {
     private String specialisation;
     private String contactDetails;
     
+    /* Default constructor */
     public Doctor() {
-        // Default constructor needed for Jackson deserialization
     }
     
+    /* Constructor with parameters */
     public Doctor(int id, String name, String contactInformation, String address, String specialisation, String contactDetails) {
         super(id, name, contactInformation, address);
         this.specialisation = specialisation;
         this.contactDetails = contactDetails;
     }
     
+    /* Getter for specialisation */
     public String getSpecialisation() {
         return specialisation;
     }
     
+    /* Setter for specialisation */
     public void setSpecialisation(String specialisation) {
         this.specialisation = specialisation;
     }
     
+    /* Getter for contact details */
     public String getContactDetails() {
         return contactDetails;
     }
     
+    /* Setter for contact details */
     public void setContactDetails(String contactDetails) {
         this.contactDetails = contactDetails;
     }
 }
-
