@@ -11,6 +11,7 @@ import java.util.List;
  *
  * @author Thusaraka
  */
+
 public class MedicalRecord {
     private int medicalRecordId;
     private Patient patient;
@@ -18,6 +19,10 @@ public class MedicalRecord {
     private List<String> treatments;
     private List<String> additionalNotes;
 
+    public MedicalRecord() {
+        // Default constructor needed for Jackson deserialization
+    }
+    
     public MedicalRecord(int medicalRecordId, Patient patient) {
         this.medicalRecordId = medicalRecordId;
         this.patient = patient;
