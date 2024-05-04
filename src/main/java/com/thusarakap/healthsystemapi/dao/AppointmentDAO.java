@@ -14,8 +14,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 /**
  *
@@ -35,14 +33,14 @@ public class AppointmentDAO {
         Patient patient1 = new Patient(1, "John Doe", "john@example.com", "123 Main St", "Chronic illness", "Stable");
         Patient patient2 = new Patient(2, "Jane Smith", "jane@example.com", "456 Elm St", "Allergic rhinitis", "Improving");
         Patient patient3 = new Patient(3, "Michael Johnson", "michael@example.com", "789 Oak St", "Hypertension", "Critical");
-        Doctor doctor1 = new Doctor(2, "Dr. John Doe", "john@example.com", "123 Main St", "General Medicine", "123-456-7890");
+        Doctor doctor1 = new Doctor(2, "Dr. John John", "john@example.com", "123 Main St", "General Medicine", "123-456-7890");
         Doctor doctor2 = new Doctor(2, "Dr. Jane Smith", "jane@example.com", "456 Elm St", "Pediatrics", "987-654-3210");
         Doctor doctor3 = new Doctor(2, "Dr. Michael Johnson", "michael@example.com", "789 Oak St", "Cardiology", "456-789-0123");
         
         // Adding sample appointments
-        appointmentList.add(new Appointment(1, LocalDate.of(2024, 5, 10), LocalTime.of(10, 0), patient1, doctor1));
-        appointmentList.add(new Appointment(2, LocalDate.of(2024, 5, 12), LocalTime.of(14, 30), patient2, doctor2));
-        appointmentList.add(new Appointment(3, LocalDate.of(2024, 5, 15), LocalTime.of(9, 0), patient3, doctor3));
+        appointmentList.add(new Appointment(1, "01-05-2024", "10:00", patient1, doctor1));
+        appointmentList.add(new Appointment(2, "29-04-2024", "10:00", patient2, doctor2));
+        appointmentList.add(new Appointment(3, "30-04-2024", "10:00", patient3, doctor3));
     }
 
     // Method to retrieve all appointments 
@@ -52,16 +50,16 @@ public class AppointmentDAO {
     }
 
     // Method to retrieve an appointment by ID 
-    public Appointment getAppointmentById(int id) throws AppointmentNotFoundException {
-        LOGGER.info("Getting appointment by ID: {}", id);
+    public Appointment getAppointmentById(int appointmentId) throws AppointmentNotFoundException {
+        LOGGER.info("Getting appointment by ID: {}", appointmentId);
         // Iterate through the list to find the appointment with specified ID 
         for (Appointment appointment : appointmentList) {
-            if (appointment.getId() == id) {
+            if (appointment.getAppointmentId() == appointmentId) {
                 return appointment;
             }
         }
         // Throw exception if appointment with specified ID is not found 
-        throw new AppointmentNotFoundException("Appointment with ID " + id + " not found.");
+        throw new AppointmentNotFoundException("Appointment with ID " + appointmentId + " not found.");
     }
     
     // Method to retrieve appointments by doctor ID 
@@ -93,37 +91,39 @@ public class AppointmentDAO {
         if (appointmentList.contains(appointment)) {
             throw new InvalidRequestException("Appointment already exists.");
         }
-        // Set the ID for the appointment
-        appointment.setId(getNextAppointmentId());
+        // Generate a new ID for the appointment and add to the list 
+        appointment.setAppointmentId(getNextAppointmentId());
         // Add the appointment to the appointmentList
         appointmentList.add(appointment);
+        LOGGER.info("Added appointment: {}", getNextAppointmentId());
     }
     
     // Method to get the next available appointment ID 
     private int getNextAppointmentId() {
-        // Initialize maxAppointmentId with a value lower than any possible appointmentId
+        LOGGER.info("Getting next appointment ID.");
+        // Initialize maxAppointment ID with a value lower than any possible appointment ID
         int maxAppointmentId = Integer.MIN_VALUE;
 
-        // Iterate through the list to find the maximum appointmentId
+        // Iterate through the list to find the maximum appointment ID
         for (Appointment appointment : appointmentList) {
-            int appointmentId = appointment.getId();
+            int appointmentId = appointment.getAppointmentId();
             if (appointmentId > maxAppointmentId) {
                 maxAppointmentId = appointmentId;
             }
         }
 
-        // Increment the maximum appointmentId to get the next available appointmentId
+        // Increment the maximum appointment ID to get the next available appointment ID
         return maxAppointmentId + 1;
     }
 
     // Method to update an appointment by ID 
-    public void updateAppointment(int id, Appointment updatedAppointment) throws AppointmentNotFoundException {
-        LOGGER.info("Updating appointment with ID: {}", id);
+    public void updateAppointment(int appointmentId, Appointment updatedAppointment) throws AppointmentNotFoundException {
+        LOGGER.info("Updating appointment with ID: {}", appointmentId);
         boolean found = false;
         /* Iterate through the list to find the appointment with specified ID */
         for (int i = 0; i < appointmentList.size(); i++) {
             Appointment appointment = appointmentList.get(i);
-            if (appointment.getId() == id) {
+            if (appointment.getAppointmentId() == appointmentId) {
                 appointmentList.set(i, updatedAppointment);
                 found = true;
                 break;
@@ -131,18 +131,18 @@ public class AppointmentDAO {
         }
         // Throw exception if appointment with specified ID is not found 
         if (!found) {
-            throw new AppointmentNotFoundException("Appointment with ID " + id + " not found.");
+            throw new AppointmentNotFoundException("Appointment with ID " + appointmentId + " not found.");
         }
     }
 
     // Method to delete an appointment by ID 
-    public void deleteAppointment(int id) throws AppointmentNotFoundException {
-        LOGGER.info("Deleting appointment with ID: {}", id);
+    public void deleteAppointment(int appointmentId) throws AppointmentNotFoundException {
+        LOGGER.info("Deleting appointment with ID: {}", appointmentId);
         // Use lambda expression to remove appointment from list 
-        boolean removed = appointmentList.removeIf(appointment -> appointment.getId() == id);
+        boolean removed = appointmentList.removeIf(appointment -> appointment.getAppointmentId() == appointmentId);
         // Throw exception if appointment with specified ID is not found 
         if (!removed) {
-            throw new AppointmentNotFoundException("Appointment with ID " + id + " not found.");
+            throw new AppointmentNotFoundException("Appointment with ID " + appointmentId + " not found.");
         }
     }
     
