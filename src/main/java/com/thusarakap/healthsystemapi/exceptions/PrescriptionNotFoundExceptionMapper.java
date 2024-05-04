@@ -25,7 +25,7 @@ public class PrescriptionNotFoundExceptionMapper implements ExceptionMapper<Pres
     public Response toResponse(PrescriptionNotFoundException exception) {
         LOGGER.error("PrescriptionNotFoundException caught: {}", exception.getMessage(), exception);
 
-        return Response.status(Response.Status.BAD_REQUEST)
+        return Response.status(Response.Status.NOT_FOUND)
                 .entity(exception.getMessage())
                 .type(MediaType.TEXT_PLAIN)
                 .build();
