@@ -4,8 +4,8 @@
  */
 package com.thusarakap.healthsystemapi.dao;
 
-import com.thusarakap.healthsystemapi.exceptions.InvalidRequestException;
-import com.thusarakap.healthsystemapi.exceptions.PersonNotFoundException;
+import com.thusarakap.healthsystemapi.exception.InvalidRequestException;
+import com.thusarakap.healthsystemapi.exception.PersonNotFoundException;
 import com.thusarakap.healthsystemapi.model.Doctor;
 import com.thusarakap.healthsystemapi.model.Patient;
 import com.thusarakap.healthsystemapi.model.Prescription;
@@ -19,11 +19,13 @@ import java.util.List;
  * @author Thusaraka
  */
 
+// Data Access Object (DAO) for handling Prescription data. 
 public class PrescriptionDAO {
     private static final Logger LOGGER = LoggerFactory.getLogger(PrescriptionDAO.class);
 
     private static final List<Prescription> prescriptionList = new ArrayList<>();
 
+    // Static initializer to add sample data 
     static {
         // Sample patients 
         Patient patient1 = new Patient(1, "John Doe", "john@example.com", "123 Main St", "Chronic illness", "Stable");
@@ -41,11 +43,13 @@ public class PrescriptionDAO {
         prescriptionList.add(new Prescription(3, "Medication C", "20mg", "Take twice daily", "3 weeks", patient3, doctor3));
     }
 
+    // Method to get all prescriptions 
     public List<Prescription> getAllPrescriptions() {
         LOGGER.info("Getting all prescriptions.");
         return prescriptionList;
     }
 
+    // Method to get prescription by ID 
     public Prescription getPrescriptionById(int prescriptionId) throws PersonNotFoundException {
         LOGGER.info("Getting prescription by ID: {}", prescriptionId);
         for (Prescription prescription : prescriptionList) {
@@ -56,16 +60,38 @@ public class PrescriptionDAO {
         throw new PersonNotFoundException("Prescription with ID " + prescriptionId + " not found.");
     }
 
+    // Method to add a new prescription 
     public void addPrescription(Prescription prescription) throws InvalidRequestException {
         LOGGER.info("Adding new prescription: {}", prescription);
         // Check if the prescription already exists
         if (prescriptionList.contains(prescription)) {
             throw new InvalidRequestException("Prescription already exists.");
         }
+        // Generate a new ID for the prescription and add to the list 
+        prescription.setPrescriptionId(getNextPrescriptionId());
         // Add the prescription to the prescriptionList
         prescriptionList.add(prescription);
     }
 
+    // Method to get the next available prescription ID 
+    public int getNextPrescriptionId() {
+        LOGGER.info("Getting next prescription ID.");
+        // Initialize maxPrescriptionId with a value lower than any possible prescription ID
+        int maxPrescriptionId = Integer.MIN_VALUE;
+
+        // Iterate through the list to find the maximum prescription ID
+        for (Prescription prescription : prescriptionList) {
+            int prescriptionId = prescription.getPrescriptionId();
+            if (prescriptionId > maxPrescriptionId) {
+                maxPrescriptionId = prescriptionId;
+            }
+        }
+
+        // Increment the maximum prescription ID to get the next available prescription ID
+        return maxPrescriptionId + 1;
+    }
+
+    // Method to update a prescription 
     public void updatePrescription(int prescriptionId, Prescription updatedPrescription) throws PersonNotFoundException {
         LOGGER.info("Updating prescription with ID: {}", prescriptionId);
         boolean found = false;
@@ -82,6 +108,7 @@ public class PrescriptionDAO {
         }
     }
 
+    // Method to delete a prescription 
     public void deletePrescription(int prescriptionId) throws PersonNotFoundException {
         LOGGER.info("Deleting prescription with ID: {}", prescriptionId);
         boolean removed = prescriptionList.removeIf(prescription -> prescription.getPrescriptionId() == prescriptionId);
