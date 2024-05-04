@@ -11,7 +11,7 @@ package com.thusarakap.healthsystemapi.resource;
 
 import com.thusarakap.healthsystemapi.dao.MedicalRecordDAO;
 import com.thusarakap.healthsystemapi.exceptions.InvalidRequestException;
-import com.thusarakap.healthsystemapi.exceptions.PersonNotFoundException;
+import com.thusarakap.healthsystemapi.exceptions.MedicalRecordNotFoundException;
 import com.thusarakap.healthsystemapi.model.MedicalRecord;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -43,7 +43,7 @@ public class MedicalRecordResource {
         try {
             MedicalRecord medicalRecord = medicalRecordDAO.getMedicalRecordById(id);
             return Response.ok(medicalRecord).build();
-        } catch (PersonNotFoundException e) {
+        } catch (MedicalRecordNotFoundException e) {
             LOGGER.warn("Medical record with ID {} not found.", id);
             return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }
@@ -68,7 +68,7 @@ public class MedicalRecordResource {
         try {
             medicalRecordDAO.updateMedicalRecord(id, updatedMedicalRecord);
             return Response.status(Response.Status.OK).entity(updatedMedicalRecord).build();
-        } catch (PersonNotFoundException e) {
+        } catch (MedicalRecordNotFoundException e) {
             LOGGER.warn("Medical record with ID {} not found.", id);
             return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }
@@ -81,7 +81,7 @@ public class MedicalRecordResource {
         try {
             medicalRecordDAO.deleteMedicalRecord(id);
             return Response.status(Response.Status.OK).build();
-        } catch (PersonNotFoundException e) {
+        } catch (MedicalRecordNotFoundException e) {
             LOGGER.warn("Medical record with ID {} not found.", id);
             return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }
@@ -94,7 +94,7 @@ public class MedicalRecordResource {
         try {
             medicalRecordDAO.addDiagnosis(id, diagnosis);
             return Response.status(Response.Status.OK).build();
-        } catch (PersonNotFoundException e) {
+        } catch (MedicalRecordNotFoundException e) {
             LOGGER.warn("Medical record with ID {} not found.", id);
             return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }
@@ -107,7 +107,7 @@ public class MedicalRecordResource {
         try {
             medicalRecordDAO.addTreatment(id, treatment);
             return Response.status(Response.Status.OK).build();
-        } catch (PersonNotFoundException e) {
+        } catch (MedicalRecordNotFoundException e) {
             LOGGER.warn("Medical record with ID {} not found.", id);
             return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }
@@ -120,7 +120,7 @@ public class MedicalRecordResource {
         try {
             medicalRecordDAO.addAdditionalNotes(id, note);
             return Response.status(Response.Status.OK).build();
-        } catch (PersonNotFoundException e) {
+        } catch (MedicalRecordNotFoundException e) {
             LOGGER.warn("Medical record with ID {} not found.", id);
             return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }
