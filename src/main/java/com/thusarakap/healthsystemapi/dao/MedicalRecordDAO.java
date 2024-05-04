@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.thusarakap.healthsystemapi.dao;
 
 import com.thusarakap.healthsystemapi.exception.InvalidRequestException;
@@ -49,7 +53,7 @@ public class MedicalRecordDAO {
                 return medicalRecord;
             }
         }
-        /* Throw exception if medical record with specified ID is not found */
+        // Throw exception if medical record with specified ID is not found 
         throw new MedicalRecordNotFoundException("Medical record with ID " + id + " not found.");
     }
     
@@ -102,7 +106,7 @@ public class MedicalRecordDAO {
         }
     }
 
-    /* Method to delete a medical record by ID */
+    // Method to delete a medical record by ID 
     public void deleteMedicalRecord(int id) throws MedicalRecordNotFoundException {
         LOGGER.info("Deleting medical record with ID: {}", id);
         /* Use lambda expression to remove medical record from list */
@@ -113,21 +117,21 @@ public class MedicalRecordDAO {
         }
     }
 
-    /* Method to add a diagnosis for a medical record */
+    // Method to add a diagnosis for a medical record 
     public void addDiagnosis(int medicalRecordId, String diagnosis) throws MedicalRecordNotFoundException {
         LOGGER.info("Adding diagnosis for medical record with ID {}: {}", medicalRecordId, diagnosis);
         MedicalRecord medicalRecord = getMedicalRecordById(medicalRecordId);
         medicalRecord.addDiagnosis(diagnosis);
     }
 
-    /* Method to add a treatment for a medical record */
+    // Method to add a treatment for a medical record 
     public void addTreatment(int medicalRecordId, String treatment) throws MedicalRecordNotFoundException {
         LOGGER.info("Adding treatment for medical record with ID {}: {}", medicalRecordId, treatment);
         MedicalRecord medicalRecord = getMedicalRecordById(medicalRecordId);
         medicalRecord.addTreatment(treatment);
     }
 
-    /* Method to add additional notes for a medical record */
+    // Method to add additional notes for a medical record 
     public void addAdditionalNotes(int medicalRecordId, String note) throws MedicalRecordNotFoundException {
         LOGGER.info("Adding additional note for medical record with ID {}: {}", medicalRecordId, note);
         MedicalRecord medicalRecord = getMedicalRecordById(medicalRecordId);
