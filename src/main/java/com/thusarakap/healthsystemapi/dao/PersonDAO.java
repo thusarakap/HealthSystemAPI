@@ -23,7 +23,7 @@ import java.util.List;
 public class PersonDAO {
     // Initializing SLF4J logger 
     private static final Logger LOGGER = LoggerFactory.getLogger(PersonDAO.class);
-    /* Initializing list to store persons */
+    // Initializing list to store persons 
     private static final List<Person> personList = new ArrayList<>();
 
     // Static initializer to add sample data
