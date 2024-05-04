@@ -5,8 +5,8 @@
 package com.thusarakap.healthsystemapi.resource;
 
 import com.thusarakap.healthsystemapi.dao.PrescriptionDAO;
-import com.thusarakap.healthsystemapi.exceptions.InvalidRequestException;
-import com.thusarakap.healthsystemapi.exceptions.PrescriptionNotFoundException;
+import com.thusarakap.healthsystemapi.exception.InvalidRequestException;
+import com.thusarakap.healthsystemapi.exception.PrescriptionNotFoundException;
 import com.thusarakap.healthsystemapi.model.Prescription;
 
 import org.slf4j.Logger;
