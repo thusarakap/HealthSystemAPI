@@ -18,6 +18,10 @@ public class Prescription {
     private Patient patient;
     private Doctor doctor;
 
+    public Prescription() {
+        // Default constructor needed for Jackson deserialization
+    }
+    
     public Prescription(int prescriptionId, String medication, String dosage, String instructions, String duration, Patient patient, Doctor doctor) {
         this.prescriptionId = prescriptionId;
         this.medication = medication;
