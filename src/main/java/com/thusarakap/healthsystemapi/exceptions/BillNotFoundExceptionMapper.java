@@ -25,7 +25,7 @@ public class BillNotFoundExceptionMapper implements ExceptionMapper<BillNotFound
     public Response toResponse(BillNotFoundException exception) {
         LOGGER.error("BillNotFoundException caught: {}", exception.getMessage(), exception);
 
-        return Response.status(Response.Status.BAD_REQUEST)
+        return Response.status(Response.Status.NOT_FOUND)
                 .entity(exception.getMessage())
                 .type(MediaType.TEXT_PLAIN)
                 .build();
