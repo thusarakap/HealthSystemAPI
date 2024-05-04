@@ -71,6 +71,7 @@ public class PrescriptionDAO {
         prescription.setPrescriptionId(getNextPrescriptionId());
         // Add the prescription to the prescriptionList
         prescriptionList.add(prescription);
+        LOGGER.info("Added prescription: {}", getNextPrescriptionId());
     }
 
     // Method to get the next available prescription ID 
