@@ -28,9 +28,9 @@ public class MedicalRecordDAO {
 
     static {
         // Sample patients 
-        Patient patient1 = new Patient(1, "John Doe", "john@example.com", "123 Main St", "Chronic illness", "Stable");
-        Patient patient2 = new Patient(2, "Jane Smith", "jane@example.com", "456 Elm St", "Allergic rhinitis", "Improving");
-        Patient patient3 = new Patient(3, "Michael Johnson", "michael@example.com", "789 Oak St", "Hypertension", "Critical");
+        Patient patient1 = new Patient(1, "Peter", "peter@gmail.com", "123 Colombo", "Chronic illness", "Good");
+        Patient patient2 = new Patient(2, "Anne Green", "anne@example.com", "456 Boston", "Allergic rhinitis", "Better");
+        Patient patient3 = new Patient(3, "Michael Jordan", "michael@gmail.com", "789 California", "Hypertension", "Critical");
 
         // Adding sample medical records
         medicalRecordList.add(new MedicalRecord(1, patient1));
@@ -87,11 +87,11 @@ public class MedicalRecordDAO {
         return maxMedicalRecordId + 1;
     }
 
-    /* Method to update a medical record by ID */
+    // Method to update a medical record by ID 
     public void updateMedicalRecord(int id, MedicalRecord updatedMedicalRecord) throws MedicalRecordNotFoundException {
         LOGGER.info("Updating medical record with ID: {}", id);
         boolean found = false;
-        /* Iterate through the list to find the medical record with specified ID */
+        // Iterate through the list to find the medical record with specified ID 
         for (int i = 0; i < medicalRecordList.size(); i++) {
             MedicalRecord medicalRecord = medicalRecordList.get(i);
             if (medicalRecord.getMedicalRecordId() == id) {
@@ -100,7 +100,7 @@ public class MedicalRecordDAO {
                 break;
             }
         }
-        /* Throw exception if medical record with specified ID is not found */
+        // Throw exception if medical record with specified ID is not found 
         if (!found) {
             throw new MedicalRecordNotFoundException("Medical record with ID " + id + " not found.");
         }
@@ -109,9 +109,9 @@ public class MedicalRecordDAO {
     // Method to delete a medical record by ID 
     public void deleteMedicalRecord(int id) throws MedicalRecordNotFoundException {
         LOGGER.info("Deleting medical record with ID: {}", id);
-        /* Use lambda expression to remove medical record from list */
+        // Use lambda expression to remove medical record from list 
         boolean removed = medicalRecordList.removeIf(medicalRecord -> medicalRecord.getMedicalRecordId() == id);
-        /* Throw exception if medical record with specified ID is not found */
+        // Throw exception if medical record with specified ID is not found 
         if (!removed) {
             throw new MedicalRecordNotFoundException("Medical record with ID " + id + " not found.");
         }
