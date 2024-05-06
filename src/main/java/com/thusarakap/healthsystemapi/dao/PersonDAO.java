@@ -28,9 +28,9 @@ public class PersonDAO {
 
     // Static initializer to add sample data
     static {
-        personList.add(new Person(1, "John Doe", "john@example.com", "123 Main St"));
-        personList.add(new Person(2, "Jane Smith", "jane@example.com", "456 Elm St"));
-        personList.add(new Person(3, "Michael Johnson", "michael@example.com", "789 Oak St"));
+        personList.add(new Person(1, "Thusaraka Palliyeguru", "thusaraka@yahoo.co.uk", "226, Kandy"));
+        personList.add(new Person(2, "Post Malone", "post@gmail.com", "456 Colombo"));
+        personList.add(new Person(3, "John John", "john@gmail.com", "789 Galle"));
     }
 
     // Method to retrieve all persons 
