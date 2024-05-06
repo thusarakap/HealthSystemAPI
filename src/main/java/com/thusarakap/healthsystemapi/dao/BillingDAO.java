@@ -29,16 +29,17 @@ public class BillingDAO {
 
     // Static initializer to add sample data 
     static {
-        // Sample patients (You need to replace these with actual patient and doctor objects)
-        Patient patient1 = new Patient(1, "John Doe", "john@example.com", "123 Main St", "Chronic illness", "Stable");
-        Patient patient2 = new Patient(2, "Jane Smith", "jane@example.com", "456 Elm St", "Allergic rhinitis", "Improving");
-        Doctor doctor1 = new Doctor(2, "Dr. John Doe", "john@example.com", "123 Main St", "General Medicine", "123-456-7890");
-        Doctor doctor2 = new Doctor(2, "Dr. Jane Smith", "jane@example.com", "456 Elm St", "Pediatrics", "987-654-3210");
+        // Sample patients
+        Patient patient1 = new Patient(1, "Peter", "peter@gmail.com", "123 Colombo", "Chronic illness", "Good");
+        Patient patient2 = new Patient(2, "Anne Green", "anne@example.com", "456 Boston", "Allergic rhinitis", "Better");
+        
+        Doctor doctor1 = new Doctor(1, "Dr. Chamari Palliyeguru", "chamari@gmail.com", "789 Kandy St", "Cardiology", "0711977578");
+        Doctor doctor2 = new Doctor(2, "Dr. Tom John", "tom@gmail.com", "456 colombo", "Pediatrics", "0713937578");
 
         // Adding sample billings
-        billingList.add(new Billing(1, 150.0, false, patient1, doctor1));
-        billingList.add(new Billing(2, 200.0, true, patient2, doctor2));
-        billingList.add(new Billing(3, 100.0, true, patient1, doctor1));
+        billingList.add(new Billing(1, 10450.0, false, patient1, doctor1));
+        billingList.add(new Billing(2, 10650.0, true, patient2, doctor2));
+        billingList.add(new Billing(3, 20300.0, true, patient1, doctor1));
     }
     
     // Method to retrieve all billings 
