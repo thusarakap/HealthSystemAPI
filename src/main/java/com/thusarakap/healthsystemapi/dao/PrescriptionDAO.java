@@ -28,19 +28,19 @@ public class PrescriptionDAO {
     // Static initializer to add sample data 
     static {
         // Sample patients 
-        Patient patient1 = new Patient(1, "John Doe", "john@example.com", "123 Main St", "Chronic illness", "Stable");
-        Patient patient2 = new Patient(2, "Jane Smith", "jane@example.com", "456 Elm St", "Allergic rhinitis", "Improving");
-        Patient patient3 = new Patient(3, "Michael Johnson", "michael@example.com", "789 Oak St", "Hypertension", "Critical");
-
+        Patient patient1 = new Patient(1, "Peter", "peter@gmail.com", "123 Colombo", "Chronic illness", "Good");
+        Patient patient2 = new Patient(2, "Anne Green", "anne@example.com", "456 Boston", "Allergic rhinitis", "Better");
+        Patient patient3 = new Patient(3, "Michael Jordan", "michael@gmail.com", "789 California", "Hypertension", "Critical");
+        
         // Sample Doctors
-        Doctor doctor1 = new Doctor(2, "Dr. John Doe", "john@example.com", "123 Main St", "General Medicine", "123-456-7890");
-        Doctor doctor2 = new Doctor(2, "Dr. Jane Smith", "jane@example.com", "456 Elm St", "Pediatrics", "987-654-3210");
-        Doctor doctor3 = new Doctor(2, "Dr. Michael Johnson", "michael@example.com", "789 Oak St", "Cardiology", "456-789-0123");
+        Doctor doctor1 = new Doctor(1, "Dr. Chamari Palliyeguru", "chamari@gmail.com", "789 Kandy St", "Cardiology", "0711977578");
+        Doctor doctor2 = new Doctor(2, "Dr. Tom John", "tom@gmail.com", "456 colombo", "Pediatrics", "0713937578");
+        Doctor doctor3 = new Doctor(2, "Dr. Jane Post", "jane@gmail.com", "789 Kurunegala", "Cardiology", "0724347578");
         
         // Adding sample prescriptions
-        prescriptionList.add(new Prescription(1, "Medication A", "10mg", "Take with water", "2 weeks", patient1, doctor1));
-        prescriptionList.add(new Prescription(2, "Medication B", "5mg", "Take before meals", "1 month", patient2, doctor2));
-        prescriptionList.add(new Prescription(3, "Medication C", "20mg", "Take twice daily", "3 weeks", patient3, doctor3));
+        prescriptionList.add(new Prescription(1, "Antibiotics", "10mg", "After Meals", "2 weeks", patient1, doctor1));
+        prescriptionList.add(new Prescription(2, "Antidepresants", "5mg", "Before meals", "1 month", patient2, doctor2));
+        prescriptionList.add(new Prescription(3, "Ritalin", "20mg", "After Meals", "3 weeks", patient3, doctor3));
     }
 
     // Method to get all prescriptions 
