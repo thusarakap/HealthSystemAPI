@@ -30,17 +30,16 @@ public class AppointmentDAO {
 
     // Static initializer to add sample data 
     static {
-        Patient patient1 = new Patient(1, "John Doe", "john@example.com", "123 Main St", "Chronic illness", "Stable");
-        Patient patient2 = new Patient(2, "Jane Smith", "jane@example.com", "456 Elm St", "Allergic rhinitis", "Improving");
-        Patient patient3 = new Patient(3, "Michael Johnson", "michael@example.com", "789 Oak St", "Hypertension", "Critical");
-        Doctor doctor1 = new Doctor(2, "Dr. John John", "john@example.com", "123 Main St", "General Medicine", "123-456-7890");
-        Doctor doctor2 = new Doctor(2, "Dr. Jane Smith", "jane@example.com", "456 Elm St", "Pediatrics", "987-654-3210");
-        Doctor doctor3 = new Doctor(2, "Dr. Michael Johnson", "michael@example.com", "789 Oak St", "Cardiology", "456-789-0123");
+        Patient patient1 = new Patient(1, "Peter", "peter@gmail.com", "123 Colombo", "Chronic illness", "Good");
+        Patient patient2 = new Patient(2, "Anne Green", "anne@example.com", "456 Boston", "Allergic rhinitis", "Better");
+        Patient patient3 = new Patient(3, "Michael Jordan", "michael@gmail.com", "789 California", "Hypertension", "Critical");
         
+        Doctor doctor1 = new Doctor(1, "Dr. Chamari Palliyeguru", "chamari@gmail.com", "789 Kandy St", "Cardiology", "0711977578");
+  
         // Adding sample appointments
-        appointmentList.add(new Appointment(1, "01-05-2024", "10:00", patient1, doctor1));
-        appointmentList.add(new Appointment(2, "29-04-2024", "10:00", patient2, doctor2));
-        appointmentList.add(new Appointment(3, "30-04-2024", "10:00", patient3, doctor3));
+        appointmentList.add(new Appointment(1, "29-04-2024", "10:00", patient1, doctor1));
+        appointmentList.add(new Appointment(2, "23-04-2024", "10:30", patient2, doctor1));
+        appointmentList.add(new Appointment(3, "01-05-2024", "13:00", patient3, doctor1));
     }
 
     // Method to retrieve all appointments 
