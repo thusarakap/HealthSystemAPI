@@ -104,4 +104,3 @@ public class Prescription {
         this.doctor = doctor;
     }
 }
-
