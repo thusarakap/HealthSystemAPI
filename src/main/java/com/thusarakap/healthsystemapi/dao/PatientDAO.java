@@ -30,9 +30,10 @@ public class PatientDAO {
     // Static initializer to add sample data
     static {
         // Adding sample patients
-        addPatient(new Patient(1, "John Doe", "john@example.com", "123 Main St", "Chronic illness", "Stable"));
-        addPatient(new Patient(2, "Jane Smith", "jane@example.com", "456 Elm St", "Allergic rhinitis", "Improving"));
-        addPatient(new Patient(3, "Michael Johnson", "michael@example.com", "789 Oak St", "Hypertension", "Critical"));
+        addPatient(new Patient(1, "Peter", "peter@gmail.com", "123 Colombo", "Chronic illness", "Good"));
+        addPatient(new Patient(2, "Anne Green", "anne@example.com", "456 Boston", "Allergic rhinitis", "Better"));
+        addPatient(new Patient(3, "Michael Jordan", "michael@gmail.com", "789 California", "Hypertension", "Critical"));
+        
     }
 
     // Method to retrieve all patients 
