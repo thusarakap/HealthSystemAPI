@@ -31,10 +31,10 @@ public class DoctorDAO {
 
     // Static initializer to add sample data 
     static {
-        // Adding sample doctors
-        addDoctor(new Doctor(1, "Dr. John Doe", "john@example.com", "123 Main St", "General Medicine", "123-456-7890"));
-        addDoctor(new Doctor(2, "Dr. Jane Smith", "jane@example.com", "456 Elm St", "Pediatrics", "987-654-3210"));
-        addDoctor(new Doctor(3, "Dr. Michael Johnson", "michael@example.com", "789 Oak St", "Cardiology", "456-789-0123"));
+        // Adding sample doctors        
+        addDoctor(new Doctor(1, "Dr. Chamari Palliyeguru", "chamari@gmail.com", "789 Kandy St", "Cardiology", "0711977578"));
+        addDoctor(new Doctor(2, "Dr. Tom John", "tom@gmail.com", "456 colombo", "Pediatrics", "0713937578"));
+        addDoctor(new Doctor(2, "Dr. Jane Post", "jane@gmail.com", "789 Kurunegala", "Cardiology", "0724347578"));
     }
 
     // Method to retrieve all doctors 
